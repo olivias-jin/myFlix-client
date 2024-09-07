@@ -27384,31 +27384,31 @@ const MainView = ()=>{
         {
             id: 1,
             title: "Forrest Gump",
-            image: "https://www.imdb.com/title/tt0109830/mediaviewer/rm1954748672/?ref_=tt_ov_i",
+            image: "https://m.media-amazon.com/images/M/MV5BNWIwODRlZTUtY2U3ZS00Yzg1LWJhNzYtMmZiYmEyNmU1NjMzXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_FMjpg_UX558_.jpg",
             director: "Robert Zemeckis"
         },
         {
             id: 2,
             title: "Spirited Away",
-            image: "https://www.imdb.com/title/tt0245429/mediaviewer/rm4207852801/?ref_=tt_ov_i",
+            image: "https://m.media-amazon.com/images/M/MV5BMjlmZmI5MDctNDE2YS00YWE0LWE5ZWItZDBhYWQ0NTcxNWRhXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg",
             director: "Hayao Miyazaki"
         },
         {
             id: 3,
             title: "Wall E",
-            image: "https://www.imdb.com/title/tt0910970/mediaviewer/rm1659211008/?ref_=tt_ov_i",
+            image: "https://raidofgame.com/uploads/posts/2020-01/1579978134_poster-wall-e.jpg",
             director: "Andrew Stanton"
         },
         {
             id: 4,
             title: "Toy Story",
-            image: "https://www.imdb.com/title/tt0114709/mediaviewer/rm3813007616/?ref_=tt_ov_i",
+            image: "https://image.tmdb.org/t/p/original/c527bh3QM4ItVT3ek5EI7GQOoDR.jpg",
             director: "John Lasseter"
         },
         {
             id: 5,
             title: "3 Idiots",
-            image: "https://www.imdb.com/title/tt1187043/mediaviewer/rm2029391104/?ref_=tt_ov_i",
+            image: "https://static.cinemagia.ro/img/db/movie/46/20/01/3-idiots-471949l.jpg",
             director: "Rajkumar Hirani"
         }
     ]);
@@ -27456,7 +27456,7 @@ const MainView = ()=>{
  //     );
  //   }
 ;
-_s(MainView, "lMLLCMxPRvDy0GCszfGpTpLX5XU=");
+_s(MainView, "nwo0O1RR6vaAKvMmCZ+f1y8fgQU=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
@@ -27587,7 +27587,7 @@ const MovieView = ({ movie, onBackClick })=>{
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: movie.author
+                        children: movie.director
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
                         lineNumber: 13,
