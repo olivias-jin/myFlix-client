@@ -27380,52 +27380,24 @@ var _movieView = require("../movie-view/movie-view");
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
-    const [movies, setMovies] = (0, _react.useState)([
-        {
-            id: 1,
-            title: "Forrest Gump",
-            image: "https://m.media-amazon.com/images/M/MV5BNWIwODRlZTUtY2U3ZS00Yzg1LWJhNzYtMmZiYmEyNmU1NjMzXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_FMjpg_UX558_.jpg",
-            director: "Robert Zemeckis"
-        },
-        {
-            id: 2,
-            title: "Spirited Away",
-            image: "https://m.media-amazon.com/images/M/MV5BMjlmZmI5MDctNDE2YS00YWE0LWE5ZWItZDBhYWQ0NTcxNWRhXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg",
-            director: "Hayao Miyazaki"
-        },
-        {
-            id: 3,
-            title: "Wall E",
-            image: "https://raidofgame.com/uploads/posts/2020-01/1579978134_poster-wall-e.jpg",
-            director: "Andrew Stanton"
-        },
-        {
-            id: 4,
-            title: "Toy Story",
-            image: "https://image.tmdb.org/t/p/original/c527bh3QM4ItVT3ek5EI7GQOoDR.jpg",
-            director: "John Lasseter"
-        },
-        {
-            id: 5,
-            title: "3 Idiots",
-            image: "https://static.cinemagia.ro/img/db/movie/46/20/01/3-idiots-471949l.jpg",
-            director: "Rajkumar Hirani"
-        }
-    ]);
+    const [movies, setMovies] = (0, _react.useState)([]);
+    (0, _react.useEffect)(()=>{
+        fetch("https://openlibrary.org/search.json?q=star+wars");
+    }, []);
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
     if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
         movie: selectedMovie,
         onBackClick: ()=>setSelectedMovie(null)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 44,
+        lineNumber: 16,
         columnNumber: 5
     }, undefined);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "The list is empty!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 50,
+        lineNumber: 22,
         columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27436,12 +27408,12 @@ const MainView = ()=>{
                 }
             }, movie.id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 56,
+                lineNumber: 28,
                 columnNumber: 9
             }, undefined))
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 54,
+        lineNumber: 26,
         columnNumber: 5
     }, undefined);
 } // export const MainView = () => {
@@ -27456,7 +27428,7 @@ const MainView = ()=>{
  //     );
  //   }
 ;
-_s(MainView, "nwo0O1RR6vaAKvMmCZ+f1y8fgQU=");
+_s(MainView, "llzgrUkvR/+OoCNfiqlA1H2LLFI=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
