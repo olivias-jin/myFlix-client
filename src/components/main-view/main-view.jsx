@@ -2,32 +2,43 @@ import { useState } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
+import { SignupView } from "../signup-view/signup-view";
 
 export const MainView = () => {
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const storedToken = localStorage.getItem("token");
+  const [user, setUser] =useState(storedUser? storedUser : null);
+  const [token, setToken] = useState(storedToken? storedToken: null);
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
-  const [user, setUser] =useState(null);
-
+ 
 useEffect(() => {
-  fetch("https://openlibrary.org/search.json?q=star+wars")
-  .then((Response) => Response.json())
-  .then((data)=> {
-    const moviesFromApi = data.docs.map((doc) => {
-      return {
-        id : doc.key,
-        title: doc.title,
-        image: `https://covers.openlibrary.org/b/id/${doc.cover_i}-L.jpg`,
-        author: doc.author_name?.[0]
-      };
-    });
+  if (!token){
+    return;
+  }
 
-   setMovies(moviesFromApi);
+  fetch("..../movies" , {
+    headers:{ Authorization: `Bearer ${token}`
+  },
+  })
+  .then((response) => response.json())
+  .then((movies)=> {
+    setMovies(movies);
     });
-}, []);
+}, [token]);
 
 if (!user) {
-  return<LoginView/>;
+  return (
+  <>
+  <LoginView onLoggedIn={(user, token) =>  {
+    setUser(user);
+    setToken(token);
+    }} /> 
+    or <SignupView/>
+    </>
+  );
 }
+
 
   if (selectedMovie) {
     return (
@@ -56,14 +67,5 @@ if (!user) {
 };
 
 
-// export const MainView = () => {
-//     return (
-//       <div>
-//         <div>Eloquent JavaScript</div>
-//         <div>Mastering JavaScript Functional Programming</div>
-//         <div>JavaScript: The Good Parts</div>
-//         <div>JavaScript: The Definitive Guide</div>
-//         <div>The Road to React</div>
-//       </div>
-//     );
-//   }
+<button onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</button>
+
