@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 import { useEffect, useState } from "react";
+=======
+import { useState ,useEffect } from "react";
+>>>>>>> Stashed changes
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 
