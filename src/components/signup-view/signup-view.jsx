@@ -22,6 +22,15 @@ export const SignupView = () => {
                 />
             </label>
             <label>
+                Password:
+                <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                />
+            </label>
+            <label>
                 Email:
                 <input 
                 type="email"
