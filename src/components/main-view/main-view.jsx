@@ -17,7 +17,7 @@ useEffect(() => {
     return;
   }
 
-  fetch("..../movies" , {
+  fetch("https://morning-taiga-69315-198698fb21c5.herokuapp.com/movies" , {
     headers:{ Authorization: `Bearer ${token}`
   },
   })
