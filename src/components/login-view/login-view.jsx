@@ -12,8 +12,6 @@ export const LoginView = (onLoggedIn) => {
         const data ={
             Username : username,
             Password : password,
-            Email : email,
-            Birthday : Birthday
         };
 
         fetch("SIGNUP_URL", {
