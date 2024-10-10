@@ -1,4 +1,3 @@
-import passport from "passport";
 import React, {useState} from "react";
 
 export const LoginView = (onLoggedIn) => {
@@ -14,7 +13,7 @@ export const LoginView = (onLoggedIn) => {
             Password : password,
         };
 
-        fetch("SIGNUP_URL", {
+        fetch("https://morning-taiga-69315-198698fb21c5.herokuapp.com/login", {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
