@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
 import { useBootstrapBreakpoints } from "react-bootstrap/esm/ThemeProvider";
 
+import "./movie-card.scss";
+
 // The Movie Card function component
 export const MovieCard = ({ movie, onMoiveClick }) => {
     return (

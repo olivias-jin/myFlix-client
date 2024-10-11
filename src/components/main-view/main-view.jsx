@@ -27,7 +27,7 @@ useEffect(() => {
       return {
         id:doc.key,
         title:doc.title,
-        image:,
+        image:'',
         author: doc.author_name?.[0]
       };
     });
@@ -36,9 +36,17 @@ useEffect(() => {
 
 }, []);
 
+<Col md={8} style={{ border: "1px solid black" }}>
+<BookView
+  style={{ border: "1px solid green" }}
+  book={selectedBook}
+  onBackClick={() => setSelectedBook(null)}
+/>
+</Col>
+
 
 return(
-  <Row>
+  <Row ClassName="justify-content-md-center">
 { !user ? (
   <>
   <LoginView onLoggedIn={(user) => setUser(user)}/> 
@@ -55,6 +63,7 @@ return(
     ) : (
       <>
       {movie.map((movie) => (
+      <Col ClassName="mb-5" key={movie.id} md={3}>
       <MovieCard
         key={movie.id}
         movie={movie}
@@ -62,11 +71,19 @@ return(
           setSelectedMovie(newSelectedMovie);
         }}
       />
+      </Col>
     ))}
     </>
   )}
   </Row>
 );
+
+<Col md={5}>
+<LoginView onLoggedIn={(user) => setUser(user)} />
+or
+<SignupView />
+</Col>
+
 };
 
 <button onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</button>
