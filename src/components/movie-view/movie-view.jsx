@@ -1,3 +1,4 @@
+import { Cursor } from "mongoose";
 import "./movie-view.scss";
 
 export const MovieView = ({ movie, onBackClick}) => {
@@ -14,7 +15,11 @@ export const MovieView = ({ movie, onBackClick}) => {
           <span>Author: </span>
           <span>{movie.Director.Name}</span>
         </div>
-        <button onClick ={onBackClick} className="back-button">
+        <button 
+        onClick ={onBackClick} 
+        className="back-button"
+        style={{Cursor: "pointer"}}
+          >
           Back
         </button>
       </div>
