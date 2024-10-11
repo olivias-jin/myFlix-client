@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-export const LoginView = (onLoggedIn) => {
+export const LoginView = ({onLoggedIn}) => {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -22,10 +22,12 @@ export const LoginView = (onLoggedIn) => {
           }).then((response) => {
             if (response.ok) {
               alert("Signup successful");
-              window.location.reload();
+              return response.json;
             } else {
               alert("Signup failed");
             }
+          }).then((data) => {
+            onLoggedIn(data.user, data.token)
           });
         };
 
