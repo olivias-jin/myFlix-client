@@ -4,6 +4,7 @@ import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import Row from "react-bootstrap/Row";
+import {Col} from "react-bootstrap";
 import { title } from "process";
 
 
@@ -40,13 +41,11 @@ export const MainView = () => {
   return (
     <Row ClassName="justify-content-md-center">
       {!user ? (
-        <>
-          <Col md={5}>
-            <LoginView onLoggedIn={(user) => setUser(user)} />
-            or
-            <SignupView />
-          </Col>
-        </>
+        <Col md={5}>
+          <LoginView onLoggedIn={(user) => setUser(user)} />
+          or
+          <SignupView />
+        </Col>
       ) : selectedMovie ? (
         <Col md={8} style={{ border: "1px solid black" }}>
           <MovieView

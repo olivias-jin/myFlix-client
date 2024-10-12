@@ -67,9 +67,3 @@ export const LoginView = ({onLoggedIn}) => {
         </Form>
     );
 };
-
-<Col md={5}>
-<LoginView onLoggedIn={(user) => setUser(user)} />
-or
-<SignupView />
-</Col>
