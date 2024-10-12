@@ -12,7 +12,7 @@ const App = () => {
      <Container style={{border: "1px solid red"}}>
        <MainView />
      </Container>
-    )
+    );
    };
 
 // Finds the root of your app

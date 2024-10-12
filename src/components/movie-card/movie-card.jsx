@@ -1,7 +1,8 @@
 // import the PropTypes library
 import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
-import { useBootstrapBreakpoints } from "react-bootstrap/esm/ThemeProvider";
+
+// import { useBootstrapBreakpoints } from "react-bootstrap/esm/ThemeProvider";
 
 import "./movie-card.scss";
 
