@@ -8,7 +8,7 @@ import "./movie-card.scss";
 // The Movie Card function component
 export const MovieCard = ({ movie, onMoiveClick }) => {
     return (
-      <Card>
+      <Card className="h-100">
         <Card.Img variant="top" src={book.image}/>
         <Card.Body>
           <Card.Title>{movie.title}</Card.Title>
@@ -37,13 +37,3 @@ MovieCard.propTypes = {
 };
 
 
-MovieView.propTypes = {
-  movie: PropTypes.shape({
-    Title: PropTypes.string.isRequired,
-    Director: PropTypes.shape({
-      Name: PropTypes.string.isRequired
-    }).isRequired,
-    ImagePath: PropTypes.string
-  }).isRequired,
-  onBackClick: PropTypes.func.isRequired
-};

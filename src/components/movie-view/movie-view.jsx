@@ -1,4 +1,3 @@
-import { Cursor } from "mongoose";
 import "./movie-view.scss";
 import Col from 'react-bootstrap/Col';
 import { Container } from "react-bootstrap";
@@ -27,19 +26,3 @@ export const MovieView = ({ movie, onBackClick}) => {
       </div>
     );
   };
-
-<Container>
-  <Col md={8}>
-  <MovieView
-    movie={selectedMovie}
-    onBackClick={() => selectedMovie(null)}
-  />
-  </Col>
-</Container>
-
-
-return (
-  <Row className="justify-content-md-center">
-    …
-  </Row>
-);

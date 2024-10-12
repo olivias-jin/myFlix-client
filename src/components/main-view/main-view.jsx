@@ -23,7 +23,7 @@ useEffect(() => {
   fetch("https://morning-taiga-69315-198698fb21c5.herokuapp.com/movies")
   .then((response) => response.json())
   .then((data)=> {
-    const moviesFromApi = data.docs.map((doc) => {
+    const moviesFromApi = data.map((doc) => {
       return {
         id:doc.key,
         title:doc.title,
@@ -35,14 +35,6 @@ useEffect(() => {
     });
 
 }, []);
-
-<Col md={8} style={{ border: "1px solid black" }}>
-<BookView
-  style={{ border: "1px solid green" }}
-  book={selectedBook}
-  onBackClick={() => setSelectedBook(null)}
-/>
-</Col>
 
 
 return(
@@ -65,7 +57,6 @@ return(
       {movie.map((movie) => (
       <Col ClassName="mb-5" key={movie.id} md={3}>
       <MovieCard
-        key={movie.id}
         movie={movie}
         onMoiveClick={(newSelectedMovie) => {
           setSelectedMovie(newSelectedMovie);
@@ -77,14 +68,4 @@ return(
   )}
   </Row>
 );
-
-<Col md={5}>
-<LoginView onLoggedIn={(user) => setUser(user)} />
-or
-<SignupView />
-</Col>
-
 };
-
-<button onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</button>
-
