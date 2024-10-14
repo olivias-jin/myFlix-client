@@ -9,9 +9,9 @@ export const ProfileView ({ user, movies, onUpdatedUserInfo, onDeleteUser }) => 
 
     // Updated User Info
     const [user, setUser] = useState(localUser.Username || "");
-    const [password, setPassword] =useState(localUser.password || "");
-    const [email, setEmail] =useState(localUser.email || "");
-    const [birthday, setBirthday] =useState(localUser.birthday || "01/01/0001");
+    const [password, setPassword] = useState(localUser.password || "");
+    const [email, setEmail] = useState(localUser.email || "");
+    const [birthday, setBirthday] = useState(localUser.birthday || "01/01/0001");
 
 
     // Deregister
