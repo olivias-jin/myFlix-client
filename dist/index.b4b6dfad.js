@@ -27614,23 +27614,23 @@ var _process = require("process");
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
-    const [movie, setMovies] = (0, _react.useState)([]);
-    const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
-    const [user, setUser] = (0, _react.useState)(null);
-    // const storedUser = JSON.parse(localStorage.getItem("user"));
-    // const storedToken = localStorage.getItem("token");
-    // const [user, setUser] =useState(storedUser? storedUser : null);
-    // const [token, setToken] = useState(storedToken? storedToken: null);
-    // const [movies, setMovies] = useState([]);
+    // const [movie, setMovies] = useState([]);
     // const [selectedMovie, setSelectedMovie] = useState(null);
+    // const [user, setUser] = useState(null);
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const storedToken = localStorage.getItem("token");
+    const [user, setUser] = (0, _react.useState)(storedUser ? storedUser : null);
+    const [token, setToken] = (0, _react.useState)(storedToken ? storedToken : null);
+    const [movies, setMovies] = (0, _react.useState)([]);
+    const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
     (0, _react.useEffect)(()=>{
         fetch("https://morning-taiga-69315-198698fb21c5.herokuapp.com/movies").then((response)=>response.json()).then((data)=>{
             const moviesFromApi = data.map((doc)=>{
                 return {
-                    id: doc.key,
-                    title: doc.title,
+                    id: doc._id,
+                    title: doc.Title,
                     image: "",
-                    author: doc.author_name?.[0]
+                    author: doc.Director?.Name
                 };
             });
             setMovies(moviesFromApi);
@@ -27686,11 +27686,11 @@ const MainView = ()=>{
             lineNumber: 59,
             columnNumber: 9
         }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-            children: movie.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+            children: movie.map((movie1)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                     ClassName: "mb-5",
                     md: 3,
                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                        movie: movie,
+                        movie: movie1,
                         onMoiveClick: (newSelectedMovie)=>{
                             setSelectedMovie(newSelectedMovie);
                         }
@@ -27699,7 +27699,7 @@ const MainView = ()=>{
                         lineNumber: 64,
                         columnNumber: 15
                     }, undefined)
-                }, movie.id, false, {
+                }, movie1.id, false, {
                     fileName: "src/components/main-view/main-view.jsx",
                     lineNumber: 63,
                     columnNumber: 13
@@ -27711,7 +27711,7 @@ const MainView = ()=>{
         columnNumber: 5
     }, undefined);
 };
-_s(MainView, "fbGX9Kp6VyqNQw6gkgRHrUEq7lk=");
+_s(MainView, "9wJBvfUyU2IigbyWC+M5y3EH9h4=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
@@ -41554,7 +41554,7 @@ const LoginView = ({ onLoggedIn })=>{
         }).then((response)=>{
             if (response.ok) {
                 alert("Signup successful");
-                return response.json;
+                return response.json();
             } else alert("Signup failed");
         }).then((data)=>{
             onLoggedIn(data.user, data.token);
