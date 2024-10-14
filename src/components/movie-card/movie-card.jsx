@@ -1,10 +1,8 @@
 // import the PropTypes library
+import React from "react";
 import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
-
-// import { useBootstrapBreakpoints } from "react-bootstrap/esm/ThemeProvider";
-
-import "./movie-card.scss";
+import { Link } from "react-router-dom";
 
 // The Movie Card function component
 export const MovieCard = ({ movie, onMovieClick }) => {
