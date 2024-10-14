@@ -20,7 +20,7 @@ export const MovieView = ({ movie }) => {
         <span>Author: </span>
         <span>{movie.author}</span>
       </div>
-      <Link to={`/`}>
+      <Link to={'/'}>
         <button className="back-button">Back</button>
       </Link>
     </div>
