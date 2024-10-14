@@ -27,7 +27,7 @@ export const LoginView = ({onLoggedIn}) => {
           }).then((response) => {
             if (response.ok) {
               alert("Signup successful");
-              return response.json;
+              return response.json();
             } else {
               alert("Signup failed");
             }
