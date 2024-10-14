@@ -7,10 +7,10 @@ import { Button, Card } from "react-bootstrap";
 import "./movie-card.scss";
 
 // The Movie Card function component
-export const MovieCard = ({ movie, onMoiveClick }) => {
+export const MovieCard = ({ movie, onMovieClick }) => {
     return (
       <Card className="h-100">
-        <Card.Img variant="top" src={book.image}/>
+        <Card.Img variant="top" src={movie.image}/>
         <Card.Body>
           <Card.Title>{movie.title}</Card.Title>
           <Card.Text>{movie.author}</Card.Text>
@@ -19,13 +19,6 @@ export const MovieCard = ({ movie, onMoiveClick }) => {
           </Button>
         </Card.Body>
       </Card>
-    // <div
-    // onClick={() => {
-    //     onMoiveClick(movie);
-    //   }}
-    //   >
-    //     {movie.title}
-    //     </div>
     );
 };
 

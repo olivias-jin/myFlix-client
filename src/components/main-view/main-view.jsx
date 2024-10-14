@@ -28,7 +28,7 @@ export const MainView = () => {
           return {
             id: doc._id,
             title: doc.Title,
-            image: '',
+            image: 'https://via.placeholder.com/150',
             author: doc.Director?.Name
           };
         });
@@ -42,7 +42,13 @@ export const MainView = () => {
     <Row ClassName="justify-content-md-center">
       {!user ? (
         <Col md={5}>
-          <LoginView onLoggedIn={(user) => setUser(user)} />
+          <LoginView onLoggedIn={(user, token) => {
+            localStorage.setItem("user", JSON.stringify(user))
+            localStorage.setItem("token", token)
+            setUser(user);
+            setToken(token)
+          }
+          } />
           or
           <SignupView />
         </Col>
@@ -59,11 +65,11 @@ export const MainView = () => {
         <div>The list is empty!</div>
       ) : (
         <>
-          {movie.map((movie) => (
+          {movies.map((movie) => (
             <Col ClassName="mb-5" key={movie.id} md={3}>
               <MovieCard
                 movie={movie}
-                onMoiveClick={(newSelectedMovie) => {
+                onMovieClick={(newSelectedMovie) => {
                   setSelectedMovie(newSelectedMovie);
                 }}
               />
