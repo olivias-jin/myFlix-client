@@ -22,7 +22,7 @@ export const MovieView = ({ movie }) => {
       </div>
       <Link to={`/`}>
         <button className="back-button">Back</button>
-        </Link>
+      </Link>
     </div>
   );
 };
