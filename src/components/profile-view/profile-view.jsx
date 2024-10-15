@@ -5,7 +5,7 @@ import { Button, Card } from "react-bootstrap";
 import './profile-view.scss';
 
 
-export const ProfileView ({ user, movies, onUpdatedUserInfo, onDeleteUser }) => {
+export const ProfileView ({ user, movie, onUpdatedUserInfo, onDeleteUser }) => {
 
     // Updated User Info
     const [user, setUser] = useState(localUser.Username || "");
@@ -16,10 +16,10 @@ export const ProfileView ({ user, movies, onUpdatedUserInfo, onDeleteUser }) => 
 
     // Deregister
     const handleDelete = () => {
-        if (window.confirm("Are you sure you want to delete your account? This action cannot be undone.")
+        if (window.confirm("Are you sure you want to delete your account? This action cannot be undone."))
         {
             onDeleteUser(user.id);
-        })
+        }
     };
 
     return (
