@@ -38,12 +38,17 @@ export const MainView = () => {
       });
   }, []);
 
-
+  const onLoggedOut = () => {
+    localStorage.clear();
+    setUser(null);
+    setToken(null);
+  }
+  
   return (
     <BrowserRouter>
       <NavigationBar user={user} onLoggedOut={onLoggedOut} />
 
-      <Row ClassName="justify-content-md-center">
+      <Row className="justify-content-md-center">
         <Routes>
           <Route
             path="/signup"
