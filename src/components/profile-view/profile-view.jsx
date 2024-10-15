@@ -53,7 +53,7 @@ export const ProfileView = ({ user, favoriteMovieList, removeFav, onUpdatedUserI
                 <Col>
                     <Card.Header>
                         <div className="user-info">
-                            <h2>{user?.Username}</h2>
+                            <h4>{user?.Username}</h4>
                             <p>{user?.Email}</p>
                         </div>
                     </Card.Header>
