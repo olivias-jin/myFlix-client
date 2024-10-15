@@ -8,6 +8,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { title } from "process";
+import "./main-view.scss";
+import { ProfileView } from "../profile-view/profile-view";
 
 
 export const MainView = () => {
@@ -43,7 +45,7 @@ export const MainView = () => {
     setUser(null);
     setToken(null);
   }
-  
+
   return (
     <BrowserRouter>
       <NavigationBar user={user} onLoggedOut={onLoggedOut} />
@@ -79,6 +81,23 @@ export const MainView = () => {
               </>
             }
           />
+
+          <Route
+            path={`/users/${user?.username}`}
+            element={
+              <>
+                {user ? (
+                  <Navigate to="/" />
+                ) : (
+                  <Col md={5}>
+                    <ProfileView user={user} />
+                  </Col>
+                )}
+              </>
+            }
+          />
+
+
           <Route
             path="/movies/:movieId"
             element={
