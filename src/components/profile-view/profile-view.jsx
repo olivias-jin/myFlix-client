@@ -39,6 +39,7 @@ export const ProfileView = ({ user, favoriteMovieList, removeFav, onUpdatedUserI
                 },
             }).then(response => {
                 if (response.ok) {
+                    alert("Deleted the User");
                     onDeleteUser(user.id);
                 } else {
                     alert("An error occurred while trying to delete the user.");
@@ -52,28 +53,14 @@ export const ProfileView = ({ user, favoriteMovieList, removeFav, onUpdatedUserI
             <Card>
                 <Col>
                     <Card.Header>
-                        <div>
+                        <div className="user-info">
                             <h2>{user?.Username}</h2>
                             <p>{user?.Email}</p>
                         </div>
-                        <h2>Favorite Movies</h2>
-                        {favoriteMovieList?.map((movie) => (
-                            <div key={movie._id}>
-                                <img src={movie.ImagePath} alt={movie.Title} />
-                                <Link to={`/movies/${movie._id}`}>
-                                    <h4>{movie.Title}</h4>
-                                </Link>
-                                <Button variant="secondary" onClick={() => removeFav(movie._id)}>
-                                    Remove from list
-                                </Button>
-                            </div>
-                        ))}
                     </Card.Header>
-                </Col>
-
-                <Col>
                     <Card.Body>
                         <Form onSubmit={handleSubmit}>
+                            <h4>Profile update</h4>
                             <Form.Group controlId="formUsername">
                                 <Form.Label>Username</Form.Label>
                                 <Form.Control
@@ -110,11 +97,24 @@ export const ProfileView = ({ user, favoriteMovieList, removeFav, onUpdatedUserI
                                 Update Profile
                             </Button>
                         </Form>
-                    </Card.Body>
-                    <Card.Body>
                         <Button variant="danger" onClick={handleDelete}>
                             Delete User
                         </Button>
+                    </Card.Body>
+
+                    <Card.Body>
+                        <h4>Favorite Movies</h4>
+                        {favoriteMovieList?.map((movie) => (
+                            <div key={movie._id}>
+                                <img src={movie.ImagePath} alt={movie.Title} />
+                                <Link to={`/movies/${movie._id}`}>
+                                    <h4>{movie.Title}</h4>
+                                </Link>
+                                <Button variant="secondary" onClick={() => removeFav(movie._id)}>
+                                    Remove from list
+                                </Button>
+                            </div>
+                        ))}
                     </Card.Body>
                 </Col>
             </Card>
