@@ -5,7 +5,6 @@ import FormLabel from "react-bootstrap";
 import FormGroup from "react-bootstrap";
 import { Button, Card, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import './profile-view.scss';
 
 export const ProfileView = ({ user, favoriteMovieList, removeFav, onUpdatedUserInfo, onDeleteUser, token }) => {
 
