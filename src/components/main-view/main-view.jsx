@@ -8,7 +8,6 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { title } from "process";
-import "./main-view.scss";
 import { ProfileView } from "../profile-view/profile-view";
 
 
@@ -83,14 +82,16 @@ export const MainView = () => {
           />
 
           <Route
-            path={`/users/${user?.username}`}
+            path={"/users/:userId"}
             element={
               <>
-                {user ? (
-                  <Navigate to="/" />
+                {!user ? (
+                  <Navigate to="/login" replace />
                 ) : (
                   <Col md={5}>
-                    <ProfileView user={user} />
+                    <ProfileView user={user}
+                      
+                    />
                   </Col>
                 )}
               </>
