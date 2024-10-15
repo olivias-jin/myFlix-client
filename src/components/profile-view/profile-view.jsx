@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import FormLabel from "react-bootstrap";
+import FormGroup from "react-bootstrap";
 import { Button, Card, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import './profile-view.scss';
