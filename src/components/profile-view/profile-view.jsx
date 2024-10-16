@@ -35,7 +35,7 @@ export const ProfileView = ({ user, movies, removeFav, onUpdatedUserInfo, onDele
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`
                 },
-                body: JSON.stringify(data),
+                body: JSON.stringify(updatedData),
             }
         ).then((response) => {
             console.log(response);
@@ -47,7 +47,7 @@ export const ProfileView = ({ user, movies, removeFav, onUpdatedUserInfo, onDele
             }
         })
             .then((data) => {
-                updatedUser(data);
+                onUpdatedUserInfo(data);
                 setUsername(data.Username);
                 setPassword(data.Password);
                 setEmail(data.Email);
@@ -60,8 +60,6 @@ export const ProfileView = ({ user, movies, removeFav, onUpdatedUserInfo, onDele
     };
 
     // Send updated data to the parent or server
-    onUpdatedUserInfo(updatedData);
-};
 
 
 // Deregister
@@ -164,3 +162,6 @@ return (
         </Card>
     </Row>
 );
+};
+
+
