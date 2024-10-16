@@ -8,6 +8,10 @@ import { Link } from "react-router-dom";
 
 export const ProfileView = ({ user, favoriteMovieList, removeFav, onUpdatedUserInfo, onDeleteUser, token }) => {
 
+
+    const favoriteMovieList = movies.filter((movie) => user.FavoriteMovies.includes(movie.id));
+
+    
     // Updated User Info
     const [username, setUsername] = useState(user?.Username || "");
     const [password, setPassword] = useState(user?.password || "");
