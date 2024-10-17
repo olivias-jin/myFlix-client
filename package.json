@@ -10,7 +10,7 @@
   "license": "ISC",
   "description": "http://localhost:1234",
   "dependencies": {
-    "bootstrap": "^5.2.0",
+    "bootstrap": "^5.3.3",
     "cors": "^2.8.5",
     "prop-types": "^15.8.1",
     "react": "^18.0.0",
