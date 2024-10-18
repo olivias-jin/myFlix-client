@@ -43125,6 +43125,7 @@ const MovieView = ({ movies , user , token , setUser  })=>{
         movieId,
         user
     ]);
+    // Add or remove a favorite movie
     const addtoFavorite = ()=>{
         fetch(`https://morning-taiga-69315-198698fb21c5.herokuapp.com/users/${user.Username}/${movieId}`, {
             method: "POST",
