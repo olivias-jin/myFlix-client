@@ -13,9 +13,9 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
           <Nav className="me-auto">
             {user ? (
               <>
-                <Nav.Link as={Link} to="/">Home</Nav.Link>
-                <Nav.Link onClick={onLoggedOut}>Logout</Nav.Link>
+                <Nav.Link as={Link} to="/">Home</Nav.Link>              
                 <Nav.Link as={Link} to={`/users/${user?.username}`}>Profile</Nav.Link>
+                <Nav.Link onClick={onLoggedOut}>Logout</Nav.Link>
               </>
             ) : (
               <>
