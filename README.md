@@ -13,4 +13,6 @@ This is the front-end application of the MovieBaseAPI project.
 http://localhost:1234
 
 
+**Netlify**
 myflix-client-oj.netlify.app
+myflix-movies-oj.netlify.app
