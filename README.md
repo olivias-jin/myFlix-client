@@ -9,10 +9,10 @@ This is the front-end application of the MovieBaseAPI project.
 
 ## **Feature**
 
-### Movie Browsing
+### **Movie Browsing**
 1- View a list of all available movies with details including images, titles, author and descriptions.
 
-### Profile
+### **Profile**
 1- View the Account Information
 
 2- Edit and Update the Profile : Username, Password, Email, and Birthday
