@@ -1,5 +1,5 @@
 $primary: SeaGreen;
-$body-bg: Honeydew;
+$body-bg: black;
 $color: steelblue;
 
 
@@ -8,3 +8,8 @@ $color: steelblue;
 .my-flix {
     color: $color;
 };
+
+.navbar-custom {
+    background-color: #333333;
+    color: white;
+}

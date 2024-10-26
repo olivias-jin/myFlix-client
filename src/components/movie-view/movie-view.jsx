@@ -17,9 +17,9 @@ export const MovieView = ({ movies, user, token, setUser }) => {
     }
   }, [movieId, user]);
 
-// Add or remove a favorite movie
+  // Add or remove a favorite movie
   const addtoFavorite = () => {
-    fetch(`https://morning-taiga-69315-198698fb21c5.herokuapp.com/users/${user.Username}/${movieId}`,
+    fetch(`https://myflix-client-oj-3c90e41c0141.herokuapp.com/users/${user.Username}/${movieId}`,
       {
         method: "POST",
         headers: {
@@ -42,7 +42,7 @@ export const MovieView = ({ movies, user, token, setUser }) => {
   };
 
   const removefromFavorite = () => {
-    fetch(`https://morning-taiga-69315-198698fb21c5.herokuapp.com/users/${user.Username}/${movieId}`,
+    fetch(`https://myflix-client-oj-3c90e41c0141.herokuapp.com/users/${user.Username}/${movieId}`,
       {
         method: "DELETE",
         headers: {
@@ -66,20 +66,32 @@ export const MovieView = ({ movies, user, token, setUser }) => {
 
   return (
     <div>
+
+      <img className="w-100" src={`/images/${movie.ImagePath}`} alt={movie.Title} />
+
+      <div><span>Title: </span>
+      <span>{movie.title}</span></div>
+
+      <div><span>Description: </span>
+      <span>{movie.description}</span></div>
+
+      <div><span>Author: </span>
+      <span>{movie.author}</span></div>
+
       <div>
-        <img className="w-100" src={movies.image} />
+        <Link to={'/'}>
+          <button className="back-button">Back</button>
+        </Link>
       </div>
-      <div>
-        <span>Title: </span>
-        <span>{movies.title}</span>
+
+
+
+      <div>{isFavorite ? (
+        <Button onClick={removefromFavorite}>Remove from Favorites</Button>
+      ) : (
+        <Button onClick={addtoFavorite}>Add to Favorites</Button>
+      )}
       </div>
-      <div>
-        <span>Author: </span>
-        <span>{movies.author}</span>
-      </div>
-      <Link to={'/'}>
-        <button className="back-button">Back</button>
-      </Link>
     </div>
   );
 };

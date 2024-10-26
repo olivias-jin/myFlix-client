@@ -28,7 +28,7 @@ export const ProfileView = ({ user, movies, removeFav, onUpdatedUserInfo, onDele
             Birthday: birthday
         }
 
-        fetch(`https://morning-taiga-69315-198698fb21c5.herokuapp.com/users/${user.Username}`,
+        fetch(`https://myflix-client-oj-3c90e41c0141.herokuapp.com/users/${user.Username}`,
             {
                 method: "PUT",
                 headers: {
@@ -65,7 +65,7 @@ export const ProfileView = ({ user, movies, removeFav, onUpdatedUserInfo, onDele
 // Deregister
 const handleDelete = () => {
     if (window.confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
-        fetch(`https://morning-taiga-69315-198698fb21c5.herokuapp.com/users/${user.Username}`, {
+        fetch(`https://myflix-client-oj-3c90e41c0141.herokuapp.com/users/${user.Username}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",

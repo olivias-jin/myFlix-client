@@ -9,6 +9,8 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { title } from "process";
 import { ProfileView } from "../profile-view/profile-view";
+import React from "react";
+
 
 
 export const MainView = () => {
@@ -31,7 +33,8 @@ export const MainView = () => {
           return {
             id: doc._id,
             title: doc.Title,
-            image: 'https://via.placeholder.com/150',
+            description: doc.Description,
+            image: doc.ImagePath,
             author: doc.Director?.Name
           };
         });
