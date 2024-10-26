@@ -82,9 +82,10 @@ export const MovieView = ({ movies, user, token, setUser }) => {
   return (
     <div className="movie-view">
       <img className="w-100" src={`/images/${movie.ImagePath}`} alt={movie.Title} />
+      <div className="movie-info">
       <div>
-        <span>Title: </span>
-        <span>{movie.title}</span>
+        <h5><span>Title: </span>
+        <span>{movie.title}</span></h5>
       </div>
       <div>
         <span>Description: </span>
@@ -94,17 +95,18 @@ export const MovieView = ({ movies, user, token, setUser }) => {
         <span>Author: </span>
         <span>{movie.author}</span>
       </div>
-      <div>
-        <Link to={'/'}>
-          <button className="back-button">Back</button>
-        </Link>
-      </div>
-      <div>
-        {isFavorite ? (
-          <Button onClick={removeFav}>Remove from Favorites</Button>
-        ) : (
-          <Button onClick={addToFavorite}>Add to Favorites</Button>
-        )}
+      <div className="click">
+          <Link to={'/'}>
+            <button className="back-button button-space">Back</button>
+          </Link>
+          
+          {/* Conditional rendering of the Add to Favorites button */}
+          {!isFavorite && (
+            <Button className="button-space" onClick={() => addToFavorite(movie)}>
+              Add to Favorites
+            </Button>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -123,12 +123,13 @@ export const ProfileView = ({ user, movies, removeFav, onUpdatedUserInfo, onDele
                   onChange={(e) => setBirthday(e.target.value)}
                 />
               </Form.Group>
-              <Button variant="primary" type="submit">
+
+              <Button variant="primary" type="submit"  className="button-space">
                 Update Profile
               </Button>
             </Form>
 
-            <Button variant="danger" onClick={handleDelete}>
+            <Button variant="danger" onClick={handleDelete} className="button-space-danger">
               Delete User
             </Button>
           </Card.Body>
@@ -136,12 +137,12 @@ export const ProfileView = ({ user, movies, removeFav, onUpdatedUserInfo, onDele
           <Card.Body>
             <h4>Favorite Movies</h4>
             {favoriteMovieList.map((movie) => (
-              <div key={movie.id}>
+              <div key={movie.id} >
                 <img src={movie.image} alt={movie.title} />
                 <Link to={`/movies/${movie.id}`}>
                   <h4>{movie.title}</h4>
                 </Link>
-                <Button variant="secondary" onClick={() => removeFav(movie)}>
+                <Button variant="secondary" onClick={() => removeFav(movie) } >
                   Remove from list
                 </Button>
               </div>

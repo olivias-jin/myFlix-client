@@ -7,8 +7,8 @@ import { Link } from "react-router-dom";
 // The Movie Card function component
 export const MovieCard = ({ movie  }) => {
   return (
-    <Card>
-      <Card.Img variant="top" src={movie.ImagePath} />
+    <Card className="movie-card">
+      <Card.Img variant="top" src={`/images/${movie.ImagePath}`} className="movie-image" />
       <Card.Body>
         <Card.Title>{movie.title}</Card.Title>
         <Card.Text>{movie.author}</Card.Text>

@@ -7,10 +7,40 @@
 }
 
 .movie-view {
-    color: white;
+    color: #3B3B3E;
 }
 
 img {
     width: 100%;
     padding: auto;
 }
+
+.movie-info {
+    display: flex;
+    flex-direction: column; // Stack items vertically
+    gap: 8px; // Adjust space between items as needed
+  }
+  
+  .movie-info div {
+    display: flex; // Allow for inline elements
+  }
+  
+  .movie-info span {
+    margin-right: 4px; // Space between labels and values
+  }
+
+
+ .click {
+    gap: 8px;
+ } 
+
+
+ .button-space {
+    margin-right: 10px; // Adjust the space as needed
+    height: 40px;
+  }
+  
+  // Optional: if you want to add space to both buttons
+  .button-space:last-child {
+    margin-right: 0; // Remove margin for the last button
+  }

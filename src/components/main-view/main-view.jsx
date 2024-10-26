@@ -27,7 +27,7 @@ export const MainView = () => {
             id: doc._id,
             title: doc.Title,
             description: doc.Description,
-            image: doc.ImagePath,
+            image: `${process.env.PUBLIC_URL}/images/${doc.ImagePath}`,
             author: doc.Director?.Name,
           };
         });
@@ -46,7 +46,7 @@ export const MainView = () => {
     <BrowserRouter>
       <NavigationBar user={user} onLoggedOut={onLoggedOut} />
 
-      <Row className="justify-content-md-center">
+      <Row className="justify-content-md-center mt-4">
         <Routes>
           <Route
             path="/signup"
