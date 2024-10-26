@@ -43739,7 +43739,7 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
 var _s = $RefreshSig$();
-const ProfileView = ({ user , movies , removeFav , onUpdatedUserInfo , onDeleteUser , token  })=>{
+const ProfileView = ({ user , movies , removeFav , onUpdatedUserInfo , onDeleteUser , token , movieId  })=>{
     _s();
     const favoriteMovieList = movies.filter((movie)=>user.FavoriteMovies.includes(movie.id));
     // Initialize state with user data

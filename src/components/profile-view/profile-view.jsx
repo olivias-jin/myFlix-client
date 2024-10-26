@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Row, Col, Button, Card, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-export const ProfileView = ({ user, movies, removeFav, onUpdatedUserInfo, onDeleteUser, token }) => {
+export const ProfileView = ({ user, movies, removeFav, onUpdatedUserInfo, onDeleteUser, token ,movieId }) => {
   const favoriteMovieList = movies.filter((movie) => user.FavoriteMovies.includes(movie.id));
 
   // Initialize state with user data
