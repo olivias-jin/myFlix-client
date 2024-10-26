@@ -1,45 +1,47 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { FormGroup } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
 
 
-export const LoginView = ({onLoggedIn}) => {
+export const LoginView = ({ onLoggedIn }) => {
 
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-        const data ={
-            Username : username,
-            Password : password,
-        };
+    const data = {
+      Username: username,
+      Password: password,
+    };
 
-        fetch("https://morning-taiga-69315-198698fb21c5.herokuapp.com/login", {
-            method: "POST",
-            body: JSON.stringify(data),
-            headers: {
-              "Content-Type": "application/json"
-            }
-          }).then((response) => {
-            if (response.ok) {
-              alert("Signup successful");
-              return response.json();
-            } else {
-              alert("Signup failed");
-            }
-          }).then((data) => {
-            onLoggedIn(data.user, data.token)
-          });
-        };
+    fetch("https://myflix-client-oj-3c90e41c0141.herokuapp.com/login", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then((response) => {
+        if (response.ok) {
+          alert("Signup successful");
+          return response.json();
+        } else {
+          alert("Signup failed");
+        }
+      }).then((data) => {
+        onLoggedIn(data.user, data.token)
+      });
+  };
 
 
 
-    return (
-        <Form onSubmit={handleSubmit}> 
+  return (
+    <div className="login-view">
+      <Form onSubmit={handleSubmit}>
         <Form.Group controlId="formUsername">
           <Form.Label>Username:</Form.Label>
           <Form.Control
@@ -48,7 +50,7 @@ export const LoginView = ({onLoggedIn}) => {
             onChange={(e) => setUsername(e.target.value)}
             required
             minLength="3"
-            />
+          />
         </Form.Group>
 
         <FormGroup controlId="formPassword">
@@ -58,12 +60,12 @@ export const LoginView = ({onLoggedIn}) => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            />
-          </FormGroup>
+          />
+        </FormGroup>
 
-            <Button variant="primary" type="submit">
-              Submit
-            </Button>
-        </Form>
-    );
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form></div>
+  );
 };

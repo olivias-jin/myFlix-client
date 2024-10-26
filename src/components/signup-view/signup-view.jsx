@@ -39,6 +39,7 @@ export const SignupView = () => {
   };
 
   return (
+    <div className="signup-view">
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId="formName">
         <Form.Label>Name:</Form.Label>
@@ -93,5 +94,6 @@ export const SignupView = () => {
 
       <Button variant="primary" className="mt-3" type="submit">Submit</Button>
     </Form>
+    </div>
   );
 };

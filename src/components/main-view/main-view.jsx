@@ -7,16 +7,10 @@ import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { title } from "process";
 import { ProfileView } from "../profile-view/profile-view";
 import React from "react";
 
-
-
 export const MainView = () => {
-  // const [movie, setMovies] = useState([]);
-  // const [user, setUser] = useState(null);
-
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
   const [user, setUser] = useState(storedUser ? storedUser : null);
@@ -24,9 +18,8 @@ export const MainView = () => {
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
-
   useEffect(() => {
-    fetch("https://morning-taiga-69315-198698fb21c5.herokuapp.com/movies")
+    fetch("https://myflix-client-oj-3c90e41c0141.herokuapp.com/movies")
       .then((response) => response.json())
       .then((data) => {
         const moviesFromApi = data.map((doc) => {
@@ -35,7 +28,7 @@ export const MainView = () => {
             title: doc.Title,
             description: doc.Description,
             image: doc.ImagePath,
-            author: doc.Director?.Name
+            author: doc.Director?.Name,
           };
         });
 
@@ -43,76 +36,11 @@ export const MainView = () => {
       });
   }, []);
 
-
-  // adding fav movies
-  const addToFavorite = async (movie) => {
-    try {
-      const response = await fetch(
-        `https://morning-taiga-69315-198698fb21c5.herokuapp.com/users/${user.Username}/movies/${movie.title}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          }
-        }
-      );
-
-      if (response.ok) {
-        const updatedUser = {
-          ...user,
-          FavoriteMovies: [...user.FavoriteMovies, movie.id]
-        }
-        console.log(updatedUser)
-        setUser(updatedUser);
-        localStorage.setItem("user", JSON.stringify(updatedUser))
-        alert("Movie added to favorites!");
-      } else {
-        alert("Failed to add movie to favorites.");
-      }
-    } catch (erro) {
-      console.error("Error adding movie to favorites:", error);
-      alert("An error occurred while adding the movie to favorites.");
-    }
-  }
-
-  //remove fav movies
-  const removeFav = async (movie) => {
-    try {
-      const response = await fetch(
-        `https://morning-taiga-69315-198698fb21c5.herokuapp.com/users/${user.Username}/movies/${movie.title}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      if (response.ok) {
-        const updatedUser = {
-          ...user,
-          FavoriteMovies: user.FavoriteMovies.filter((id) => id !== movie.id)
-        }
-        setUser(updaedUser);
-        localStorage.setItem("user", JSON.stringify(updatedUser))
-        alert("Movie removed from favorites!");
-      } else {
-        alert("Failed to remove movie from favorites.");
-      }
-    } catch (error) {
-      console.error("Error adding movie to favorites:", error);
-      alert("An error occurred while adding the movie to favorites.")
-    }
-  }
-
-
   const onLoggedOut = () => {
     localStorage.clear();
     setUser(null);
     setToken(null);
-  }
+  };
 
   return (
     <BrowserRouter>
@@ -143,18 +71,19 @@ export const MainView = () => {
                   <Navigate to="/" />
                 ) : (
                   <Col md={5}>
-                    <LoginView onLoggedIn={(user, token) => {
-                      setUser(user);
-                      setToken(token);
-                      localStorage.setItem("user", JSON.stringify(user))
-                      localStorage.setItem("token", token)
-                    }} />
+                    <LoginView
+                      onLoggedIn={(user, token) => {
+                        setUser(user);
+                        setToken(token);
+                        localStorage.setItem("user", JSON.stringify(user));
+                        localStorage.setItem("token", token);
+                      }}
+                    />
                   </Col>
                 )}
               </>
             }
           />
-
 
           <Route
             path={"/users/:userId"}
@@ -165,7 +94,6 @@ export const MainView = () => {
                 ) : (
                   <Col md={5}>
                     <ProfileView
-                      removeFav={removeFav}
                       movies={movies}
                       user={user}
                       onUpdatedUserInfo={setUser}
@@ -177,7 +105,6 @@ export const MainView = () => {
               </>
             }
           />
-
 
           <Route
             path="/movies/:movieId"
@@ -207,7 +134,7 @@ export const MainView = () => {
                   <>
                     {movies.map((movie) => (
                       <Col className="mb-4" key={movie.id} md={3}>
-                        <MovieCard handleAddToFavorite={addToFavorite} movie={movie} />
+                        <MovieCard movie={movie} />
                       </Col>
                     ))}
                   </>
