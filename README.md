@@ -14,9 +14,13 @@ This is the front-end application of the MovieBaseAPI project.
 
 ### Profile
 1- View the Account Information
+
 2- Edit and Update the Profile : Username, Password, Email, and Birthday
+
 3- Veiw Favorite Movie list
+
 4- Remove Favorite Movie list
+
 5- Delete the User Account
 
 
