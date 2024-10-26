@@ -1,5 +1,5 @@
-$primary: SeaGreen;
-$body-bg: black;
+$primary: #B0B6B7;
+$body-bg: #bbd0e9;
 $color: steelblue;
 
 
@@ -10,8 +10,20 @@ $color: steelblue;
 };
 
 .navbar-custom {
-    background-color: blueviolet;
+    background-color: #3B3B3E;
     color: white;
+
+    .nav-link {
+        color:white !important;
+    }
+
+    .navbar-brand {
+        color: white !important;
+    }
+
+    .navbar-text {
+        color: white;
+    }
 }
 
 
@@ -21,4 +33,41 @@ $color: steelblue;
 
 .signup-view{
     color: white;
+}
+
+.movie-card {
+    width: 100%; /* Adjust as necessary */
+    height: 350px; /* Set a fixed height */
+    display: flex;
+    flex-direction: column; /* Ensure the content is vertically aligned */
+    justify-content: space-between; /* Space out the content */
+  
+  }
+  
+  .movie-image {
+    height: 200px; /* Fixed height for images */
+    object-fit: cover; /* Maintain aspect ratio, cropping if necessary */
+  }
+
+
+.profile-view {
+    background-color: #E9E9EB;
+} 
+
+.button-space {
+    margin-top: 10px; // Space above the button
+    margin-bottom: 10px; // Space below the button
+    height: 40px;
+}
+
+.button-space-danger {
+    
+    height: 40px;
+  }
+
+
+.favoritlist{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 40px;
 }
