@@ -1,18 +1,17 @@
-**MyFlix Client**
-
+# **MyFlix Client**
 This is the front-end application of the MovieBaseAPI project.
 
 
-**Technologies Used**
+## **Technologies Used**
 - React
 - React Bootstrap
 - Parcel
 
+### **Feature**
+Main View
 
 
-http://localhost:1234
-
-
-**Netlify**
+### **Netlify**
 myflix-client-oj.netlify.app
+
 myflix-movies-oj.netlify.app
