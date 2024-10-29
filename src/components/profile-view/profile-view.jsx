@@ -74,6 +74,37 @@ export const ProfileView = ({ user, movies, removeFav, onUpdatedUserInfo, onDele
     }
   };
 
+  const removeFav = async (movie) => {
+    try {
+      const response = await fetch(
+        `https://myflix-client-oj-3c90e41c0141.herokuapp.com/users/${user.Username}/movies/${movie.id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+  
+      if (response.ok) {
+        // Update the user's favorite movies in the state
+        alert("Movie removed from favorites!");
+        // You might need to call a function to update the user's favorite movies in the parent component.
+        // Call a function to re-fetch or update the user's state if necessary.
+      } else {
+        const errorMessage = await response.text();
+        alert("Failed to remove movie from favorites: " + errorMessage);
+      }
+    } catch (error) {
+      console.error("Error removing movie from favorites:", error);
+      alert("An error occurred while removing the movie from favorites.");
+    }
+  };
+
+  if (!movie) {
+    return <div>Movie not found.</div>;
+  }
   return (
     <Row className="justify-content-md-center">
       <Card>

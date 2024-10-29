@@ -18,7 +18,7 @@ export const MovieView = ({ movies, user, token, setUser }) => {
   const addToFavorite = async (movie) => {
     try {
       const response = await fetch(
-        `https://myflix-client-oj-3c90e41c0141.herokuapp.com/users/${user.Username}/movies/${movie.id}`,
+        `https://myflix-client-oj-3c90e41c0141.herokuapp.com/users/${user.Username}/movies/${movie.title}`,
         {
           method: "POST",
           headers: {
