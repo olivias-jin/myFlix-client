@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Row, Col, Button, Card, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-export const ProfileView = ({ user, movies, removeFav, onUpdatedUserInfo, onDeleteUser, token ,movieId }) => {
+export const ProfileView = ({ user, movies, removeFav, onUpdatedUserInfo, onDeleteUser, token, movieId }) => {
   const favoriteMovieList = movies.filter((movie) => user.FavoriteMovies.includes(movie.id));
 
   // Initialize state with user data
@@ -86,7 +86,7 @@ export const ProfileView = ({ user, movies, removeFav, onUpdatedUserInfo, onDele
           },
         }
       );
-  
+
       if (response.ok) {
         // Update the user's favorite movies in the state
         alert("Movie removed from favorites!");
@@ -155,7 +155,7 @@ export const ProfileView = ({ user, movies, removeFav, onUpdatedUserInfo, onDele
                 />
               </Form.Group>
 
-              <Button variant="primary" type="submit"  className="button-space">
+              <Button variant="primary" type="submit" className="button-space">
                 Update Profile
               </Button>
             </Form>
@@ -168,12 +168,12 @@ export const ProfileView = ({ user, movies, removeFav, onUpdatedUserInfo, onDele
           <Card.Body>
             <h4>Favorite Movies</h4>
             {favoriteMovieList.map((movie) => (
-              <div key={movie.id} >
+              <div key={movie.title} >
                 <img src={movie.image} alt={movie.title} />
                 <Link to={`/movies/${movie.id}`}>
                   <h4>{movie.title}</h4>
                 </Link>
-                <Button variant="secondary" onClick={() => removeFav(movie) } >
+                <Button variant="secondary" onClick={() => removeFav(movie)} >
                   Remove from list
                 </Button>
               </div>
