@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Row, Col, Button, Card, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-export const ProfileView = ({ user, movies, onUpdatedUserInfo, onDeleteUser, token, movieId }) => {
+export const ProfileView = ({ user, movies, onUpdatedUserInfo, onDeleteUser, token }) => {
   const favoriteMovieList = movies.filter((movie) => user.FavoriteMovies.includes(movie.id));
 
   // Initialize state with user data
@@ -76,8 +76,12 @@ export const ProfileView = ({ user, movies, onUpdatedUserInfo, onDeleteUser, tok
 
   const removeFav = async (movie) => {
     try {
+      const movieId = movie.id;
+      console.log("Removing movie with ID:", movieId); // Log the ID used in the request
+      console.log("User's current favorite movies:", user.FavoriteMovies); // Log user's favorite movies
+
       const response = await fetch(
-        `https://myflix-client-oj-3c90e41c0141.herokuapp.com/users/${user.Username}/movies/${movie.id}`,
+        `https://myflix-client-oj-3c90e41c0141.herokuapp.com/users/${user.Username}/movies/${movie.title}`,
         {
           method: "DELETE",
           headers: {
@@ -92,6 +96,10 @@ export const ProfileView = ({ user, movies, onUpdatedUserInfo, onDeleteUser, tok
         alert("Movie removed from favorites!");
         // You might need to call a function to update the user's favorite movies in the parent component.
         // Call a function to re-fetch or update the user's state if necessary.
+        onUpdatedUserInfo({
+          ...user,
+          FavoriteMovies: user.FavoriteMovies.filter((id) => id !== movie.id)
+        });
       } else {
         const errorMessage = await response.text();
         alert("Failed to remove movie from favorites: " + errorMessage);
@@ -102,9 +110,6 @@ export const ProfileView = ({ user, movies, onUpdatedUserInfo, onDeleteUser, tok
     }
   };
 
-  if (!movie) {
-    return <div>Movie not found.</div>;
-  }
   return (
     <Row className="justify-content-md-center">
       <Card>

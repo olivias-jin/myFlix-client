@@ -9,6 +9,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { ProfileView } from "../profile-view/profile-view";
 import React from "react";
+import { Form, InputGroup, Button } from "react-bootstrap";
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -17,6 +18,9 @@ export const MainView = () => {
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
+
+  // Search bar
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     fetch("https://myflix-client-oj-3c90e41c0141.herokuapp.com/movies")
@@ -31,7 +35,6 @@ export const MainView = () => {
             author: doc.Director?.Name,
           };
         });
-
         setMovies(moviesFromApi);
       });
   }, []);
@@ -41,6 +44,15 @@ export const MainView = () => {
     setUser(null);
     setToken(null);
   };
+
+  // Search bar handler
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value.toLowerCase());
+  };
+
+  //  Filter  movies based on the search term
+  const filteredMovies = movies.filter((movie) =>
+    movie.title.toLowerCase().includes(searchTerm));
 
   return (
     <BrowserRouter>
@@ -122,21 +134,37 @@ export const MainView = () => {
               </>
             }
           />
+
           <Route
             path="/"
             element={
               <>
                 {!user ? (
                   <Navigate to="/login" replace />
-                ) : movies.length === 0 ? (
-                  <Col>The list is empty!</Col>
                 ) : (
                   <>
-                    {movies.map((movie) => (
-                      <Col className="mb-4" key={movie.id} md={3}>
-                        <MovieCard movie={movie} />
-                      </Col>
-                    ))}
+                    {/* Search Bar */}
+                    <InputGroup className="mb-4">
+                      <Form.Control
+                        placeholder="Search movies..."
+                        value={searchTerm}
+                        onChange={handleSearchChange}
+                      />
+                      <Button variant="outline-secondary">Search</Button>
+                    </InputGroup>
+
+                    {/* Display Movies */}
+                    <Row>
+                      {filteredMovies.length > 0 ? (
+                        filteredMovies.map((movie) => (
+                          <Col className="mb-4" key={movie.id} md={3}>
+                            <MovieCard movie={movie} />
+                          </Col>
+                        ))
+                      ) : (
+                        <Col>No movies found.</Col>
+                      )}
+                    </Row>
                   </>
                 )}
               </>
