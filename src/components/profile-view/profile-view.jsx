@@ -6,16 +6,21 @@ export const ProfileView = ({ user, movies, onUpdatedUserInfo, onDeleteUser, tok
   const favoriteMovieList = movies.filter((movie) => user.FavoriteMovies.includes(movie.id));
 
   // Initialize state with user data
-  const [username, setUsername] = useState(user.Username);
-  const [email, setEmail] = useState(user.Email);
-  const [password, setPassword] = useState('');
-  const [birthday, setBirthday] = useState(user.Birthday || '');
+  const [username, setUsername] = useState(user.Username || "");
+  const [email, setEmail] = useState(user.Email || "");
+  const [password, setPassword] = useState("");
+  const [birthday, setBirthday] = useState(user.Birthday || "");
 
   // Handle form submission
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const updatedData = {
+    if (!password) {
+      alert("Please enter your password to update your profile");
+      return;
+    }
+
+    const data = {
       Username: username,
       Email: email,
       Password: password,
@@ -28,24 +33,24 @@ export const ProfileView = ({ user, movies, onUpdatedUserInfo, onDeleteUser, tok
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(updatedData),
+      body: JSON.stringify(data),
     })
       .then((response) => {
         if (response.ok) {
+          console.log("Update successful!")
           return response.json();
         } else {
-          throw new Error("Update failed!");
+          alert("Update failed!");
         }
       })
       .then((data) => {
-        // update user info in local stroage
-        localStorage.setItem('user', JSON.stringify(data));
-
         onUpdatedUserInfo(data);
         setUsername(data.Username);
+        setPassword(data.Password);
         setEmail(data.Email);
         setBirthday(data.Birthday);
         alert("Profile updated successfully!");
+        window.location.reload();
       })
       .catch((error) => {
         console.error(error);
@@ -65,10 +70,6 @@ export const ProfileView = ({ user, movies, onUpdatedUserInfo, onDeleteUser, tok
         .then(response => {
           if (response.ok) {
             alert("Deleted the User");
-
-            // remove user from local storage
-            localStorage.removeItem('user');
-
             onDeleteUser(user.id);
           } else {
             alert("An error occurred while trying to delete the user.");
@@ -101,18 +102,12 @@ export const ProfileView = ({ user, movies, onUpdatedUserInfo, onDeleteUser, tok
       if (response.ok) {
         // Update the user's favorite movies in the state
         alert("Movie removed from favorites!");
-
-        // Update the user's favorite movies in the state and local storage
-        const updatedFavorites = user.FavoriteMovies.filter((id) => id !== movie.id);
-        const updatedUserInfo = {
+        // You might need to call a function to update the user's favorite movies in the parent component.
+        // Call a function to re-fetch or update the user's state if necessary.
+        onUpdatedUserInfo({
           ...user,
-          FavoriteMovies: updatedFavorites,
-        };
-
-        // Update local storage with the new favorites list
-        localStorage.setItem('user', JSON.stringify(updatedUserInfo));
-
-        onUpdatedUserInfo(updatedUserInfo);
+          FavoriteMovies: user.FavoriteMovies.filter((id) => id !== movie.id)
+        });
       } else {
         const errorMessage = await response.text();
         alert("Failed to remove movie from favorites: " + errorMessage);
