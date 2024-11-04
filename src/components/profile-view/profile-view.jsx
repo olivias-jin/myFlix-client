@@ -38,6 +38,9 @@ export const ProfileView = ({ user, movies, onUpdatedUserInfo, onDeleteUser, tok
         }
       })
       .then((data) => {
+        // update user info in local stroage
+        localStorage.setItem('user', JSON.stringify(data));
+
         onUpdatedUserInfo(data);
         setUsername(data.Username);
         setEmail(data.Email);
@@ -62,6 +65,10 @@ export const ProfileView = ({ user, movies, onUpdatedUserInfo, onDeleteUser, tok
         .then(response => {
           if (response.ok) {
             alert("Deleted the User");
+
+            // remove user from local storage
+            localStorage.removeItem('user');
+
             onDeleteUser(user.id);
           } else {
             alert("An error occurred while trying to delete the user.");
@@ -94,12 +101,18 @@ export const ProfileView = ({ user, movies, onUpdatedUserInfo, onDeleteUser, tok
       if (response.ok) {
         // Update the user's favorite movies in the state
         alert("Movie removed from favorites!");
-        // You might need to call a function to update the user's favorite movies in the parent component.
-        // Call a function to re-fetch or update the user's state if necessary.
-        onUpdatedUserInfo({
+
+        // Update the user's favorite movies in the state and local storage
+        const updatedFavorites = user.FavoriteMovies.filter((id) => id !== movie.id);
+        const updatedUserInfo = {
           ...user,
-          FavoriteMovies: user.FavoriteMovies.filter((id) => id !== movie.id)
-        });
+          FavoriteMovies: updatedFavorites,
+        };
+
+        // Update local storage with the new favorites list
+        localStorage.setItem('user', JSON.stringify(updatedUserInfo));
+
+        onUpdatedUserInfo(updatedUserInfo);
       } else {
         const errorMessage = await response.text();
         alert("Failed to remove movie from favorites: " + errorMessage);
