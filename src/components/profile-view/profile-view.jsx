@@ -3,13 +3,14 @@ import { Row, Col, Button, Card, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export const ProfileView = ({ user, movies, onUpdatedUserInfo, onDeleteUser, token }) => {
-  const favoriteMovieList = movies.filter((movie) => user.FavoriteMovies.includes(movie.id));
+  const favoriteMovieList = movies.filter((movie) => user.FavoriteMovies && user.FavoriteMovies.includes(movie.id));
 
   // Initialize state with user data
-  const [username, setUsername] = useState(user.Username || "");
-  const [email, setEmail] = useState(user.Email || "");
-  const [password, setPassword] = useState("");
-  const [birthday, setBirthday] = useState(user.Birthday || "");
+  const [username, setUsername] = useState(user.Username || '');
+  const [email, setEmail] = useState(user.Email || '');
+  const [password, setPassword] = useState('');
+  const [birthday, setBirthday] = useState(user.Birthday || '');
+
 
   // Handle form submission
   const handleSubmit = (event) => {
@@ -20,7 +21,7 @@ export const ProfileView = ({ user, movies, onUpdatedUserInfo, onDeleteUser, tok
       return;
     }
 
-    const data = {
+    const updatedUser = {
       Username: username,
       Email: email,
       Password: password,
@@ -33,28 +34,60 @@ export const ProfileView = ({ user, movies, onUpdatedUserInfo, onDeleteUser, tok
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(updatedUser),
     })
+
+      //   .then(response => {
+      //     if (!response.ok) {
+      //       console.log("Update successful!");
+      //       return response.json();
+      //     } else {
+      //       alert("Update failed!");
+      //     }
+      //   })
+      //   .then(data => {
+      //     alert('Your profile was updated');
+      //     setUser(data);
+      //     localStorage.setItem('user', JSON.stringify(data));
+      //   })
+      //   .catch(err => console.error('Error updating profile:', err));
+      // };
+
       .then((response) => {
         if (response.ok) {
-          console.log("Update successful!")
+          // 확인증
+          console.log("Update successful!");
+
           return response.json();
         } else {
-          alert("Update failed!");
+          throw new Error("Update failed!");
         }
       })
+
       .then((data) => {
+        // Use the latest data from the response
         onUpdatedUserInfo(data);
+
+        // Log the updated user data for debugging
+        console.log("Updated user data:", data);
+        
+        // Update localStorage with the new user data
+        localStorage.setItem('user', JSON.stringify(data));
+
+        // Update state with the updated values
         setUsername(data.Username);
-        setPassword(data.Password);
         setEmail(data.Email);
+        setPassword(data.Password);
         setBirthday(data.Birthday);
         alert("Profile updated successfully!");
-        window.location.reload();
+        // 확인중
+
       })
       .catch((error) => {
         console.error(error);
         alert(error.message);
+
+
       });
   };
 
@@ -66,11 +99,14 @@ export const ProfileView = ({ user, movies, onUpdatedUserInfo, onDeleteUser, tok
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
+
       })
         .then(response => {
           if (response.ok) {
             alert("Deleted the User");
-            onDeleteUser(user.id);
+            localStorage.clear();
+            // onDeleteUser(user.id);
+            navigate('/login');
           } else {
             alert("An error occurred while trying to delete the user.");
           }
@@ -131,7 +167,7 @@ export const ProfileView = ({ user, movies, onUpdatedUserInfo, onDeleteUser, tok
           </Card.Header>
 
           <Card.Body>
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={(e) => handleSubmit(e)}>
               <h4>Profile Update</h4>
               <Form.Group controlId="formUsername">
                 <Form.Label>Username</Form.Label>
@@ -140,6 +176,8 @@ export const ProfileView = ({ user, movies, onUpdatedUserInfo, onDeleteUser, tok
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   required
+                  minLength="3"
+                  placeholder="Enter Username"
                 />
               </Form.Group>
               <Form.Group controlId="formPassword">
@@ -148,6 +186,8 @@ export const ProfileView = ({ user, movies, onUpdatedUserInfo, onDeleteUser, tok
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  required
+                  placeholder="Enter Password"
                 />
               </Form.Group>
               <Form.Group controlId="formEmail">
@@ -157,6 +197,7 @@ export const ProfileView = ({ user, movies, onUpdatedUserInfo, onDeleteUser, tok
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
+                  placeholder="Enter Email address"
                 />
               </Form.Group>
               <Form.Group controlId="formBirthday">
@@ -165,6 +206,7 @@ export const ProfileView = ({ user, movies, onUpdatedUserInfo, onDeleteUser, tok
                   type="date"
                   value={birthday}
                   onChange={(e) => setBirthday(e.target.value)}
+                  required
                 />
               </Form.Group>
 

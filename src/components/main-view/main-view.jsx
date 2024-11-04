@@ -12,16 +12,15 @@ import React from "react";
 import { Form, InputGroup, Button } from "react-bootstrap";
 
 export const MainView = () => {
-  const storedUser = JSON.parse(localStorage.getItem("user"));
-  const storedToken = localStorage.getItem("token");
-  const [user, setUser] = useState(storedUser ? storedUser : null);
-  const [token, setToken] = useState(storedToken ? storedToken : null);
+  const [user, setUser] = useState(() => JSON.parse(localStorage.getItem("user")) || null);
+  const [token, setToken] = useState(localStorage.getItem("token") || null);
   const [movies, setMovies] = useState([]);
-  const [selectedMovie, setSelectedMovie] = useState(null);
+
 
   // Search bar
   const [searchTerm, setSearchTerm] = useState("");
 
+  // Fetch movies
   useEffect(() => {
     fetch("https://myflix-client-oj-3c90e41c0141.herokuapp.com/movies")
       .then((response) => response.json())
@@ -38,6 +37,12 @@ export const MainView = () => {
         setMovies(moviesFromApi);
       });
   }, []);
+
+ // Sync with localStorage on mount to ensure latest user info is loaded
+ useEffect(() => {
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  if (storedUser) setUser(storedUser);
+}, []);
 
   const onLoggedOut = () => {
     localStorage.clear();
@@ -108,7 +113,10 @@ export const MainView = () => {
                     <ProfileView
                       movies={movies}
                       user={user}
-                      onUpdatedUserInfo={setUser}
+                      onUpdatedUserInfo={(updatedUser) => {
+                        setUser(updatedUser);
+                        localStorage.setItem("user", JSON.stringify(updatedUser)); // Update localStorage
+                      }}
                       onDeleteUser={onLoggedOut}
                       token={token}
                     />
