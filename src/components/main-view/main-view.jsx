@@ -30,7 +30,7 @@ export const MainView = () => {
             id: doc._id,
             title: doc.Title,
             description: doc.Description,
-            image: `${process.env.PUBLIC_URL}/images/${doc.ImagePath}`,
+            image: doc.ImagePath,
             author: doc.Director?.Name,
           };
         });

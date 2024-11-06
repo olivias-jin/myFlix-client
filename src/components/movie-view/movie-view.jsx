@@ -67,7 +67,7 @@ export const MovieView = ({ movies, user, token, setUser }) => {
       </InputGroup>
 
       {/* Display Current Movie Details */}
-      <img className="w-100" src={`/images/${movie.ImagePath}`} alt={movie.Title} />
+      <img className="w-100" src={movie.image} alt={movie.title} />
       <div className="movie-info">
         <div>
           <h5><span>Title: </span>

@@ -65,20 +65,21 @@ export const ProfileView = ({ user, movies, onUpdatedUserInfo, onDeleteUser, tok
       })
 
       .then((data) => {
+        const updateduser = data.user;
         // Use the latest data from the response
-        onUpdatedUserInfo(data);
+        onUpdatedUserInfo(updateduser);
 
         // Log the updated user data for debugging
-        console.log("Updated user data:", data);
+        console.log("Updated user data:", updateduser);
         
         // Update localStorage with the new user data
-        localStorage.setItem('user', JSON.stringify(data));
+        localStorage.setItem('user', JSON.stringify(updateduser));
 
         // Update state with the updated values
-        setUsername(data.Username);
-        setEmail(data.Email);
-        setPassword(data.Password);
-        setBirthday(data.Birthday);
+        setUsername(updateduser.Username);
+        setEmail(updateduser.Email);
+        setPassword(updateduser.Password);
+        setBirthday(updateduser.Birthday);
         alert("Profile updated successfully!");
         // 확인중
 
