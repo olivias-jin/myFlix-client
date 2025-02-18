@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { FormGroup } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-
+import "./login-view.scss";
+import { Link } from "react-router-dom";
 
 
 export const LoginView = ({ onLoggedIn }) => {
@@ -27,10 +28,10 @@ export const LoginView = ({ onLoggedIn }) => {
     })
       .then((response) => {
         if (response.ok) {
-          alert("Signup successful");
+          alert("LogIn successful");
           return response.json();
         } else {
-          alert("Signup failed");
+          alert("LogIn failed");
         }
       }).then((data) => {
         onLoggedIn(data.user, data.token)
@@ -40,8 +41,10 @@ export const LoginView = ({ onLoggedIn }) => {
 
 
   return (
+
     <div className="login-view">
       <Form onSubmit={handleSubmit}>
+        <h3>Welcome To Movie APP!</h3>
         <Form.Group controlId="formUsername">
           <Form.Label>Username:</Form.Label>
           <Form.Control
@@ -66,6 +69,13 @@ export const LoginView = ({ onLoggedIn }) => {
         <Button variant="primary" type="submit">
           Submit
         </Button>
-      </Form></div>
+        <p className="signup-text">
+          New to Movie App? <Link to="/signup" className="signup-link">Sign up Now</Link>
+        </p>
+
+
+
+      </Form>
+    </div>
   );
 };

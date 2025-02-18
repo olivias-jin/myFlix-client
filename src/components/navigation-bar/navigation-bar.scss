@@ -1,0 +1,31 @@
+.navbar-custom {
+    background-color: black;
+
+
+    padding: 30px;
+
+
+
+    .nav-link {
+        color: white !important;
+    }
+
+    .navbar-brand {
+        color: white !important;
+    }
+
+
+
+    .navbar-toggler-icon {
+        filter: invert(1); // 햄버거 아이콘 색 반전 (어두운 배경에서 보이게)
+    }
+
+    .navbar-text {
+        color: white;
+    }
+}
+
+img {
+    width: 200px;
+    height: auto; // 비율 유지
+}

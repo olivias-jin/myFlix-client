@@ -10,6 +10,7 @@ import Col from "react-bootstrap/Col";
 import { ProfileView } from "../profile-view/profile-view";
 import React from "react";
 import { Form, InputGroup, Button } from "react-bootstrap";
+import "./main-view.scss";
 
 export const MainView = () => {
   const [user, setUser] = useState(() => JSON.parse(localStorage.getItem("user")) || null);
@@ -38,11 +39,11 @@ export const MainView = () => {
       });
   }, []);
 
- // Sync with localStorage on mount to ensure latest user info is loaded
- useEffect(() => {
-  const storedUser = JSON.parse(localStorage.getItem("user"));
-  if (storedUser) setUser(storedUser);
-}, []);
+  // Sync with localStorage on mount to ensure latest user info is loaded
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (storedUser) setUser(storedUser);
+  }, []);
 
   const onLoggedOut = () => {
     localStorage.clear();
@@ -152,15 +153,18 @@ export const MainView = () => {
                 ) : (
                   <>
                     {/* Search Bar */}
-                    <InputGroup className="mb-4">
-                      <Form.Control
-                        placeholder="Search movies..."
-                        value={searchTerm}
-                        onChange={handleSearchChange}
-                      />
-                      <Button variant="outline-secondary">Search</Button>
-                    </InputGroup>
-
+                    <Row className="justify-content-center">
+                      <Col xs={8} sm={6} md={4}>  {/* 반응형으로 크기 조정 */}
+                        <InputGroup className="mb-4">
+                          <Form.Control
+                            placeholder="Search movies..."
+                            value={searchTerm}
+                            onChange={handleSearchChange}
+                          />
+                          <Button variant="outline-secondary">Search</Button>
+                        </InputGroup>
+                      </Col>
+                    </Row>
                     {/* Display Movies */}
                     <Row>
                       {filteredMovies.length > 0 ? (

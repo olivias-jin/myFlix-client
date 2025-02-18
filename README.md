@@ -35,7 +35,5 @@ This is the front-end application of the MovieBaseAPI project. This is demo web 
 ## **Live Demo**
 
 ```bash
-myflix-client-oj.netlify.app
-
 myflix-movies-oj.netlify.app
 ```

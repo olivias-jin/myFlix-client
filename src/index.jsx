@@ -9,12 +9,12 @@ import "./index.scss";
 
 // Main component (will eventually use all the others)
 const App = () => {
-    return (
-     <Container >
-       <MainView />
-     </Container>
-    );
-   };
+  return (
+    <Container fluid>
+      <MainView />
+    </Container>
+  );
+};
 
 // Finds the root of your app
 const container = document.querySelector("#root");

@@ -1,46 +1,90 @@
-.back-button {
-    padding: 4px 12px 4px 12px;
-    color: whitesmoke;
-    background-color: dodgerblue;
-    border: none;
-    border-radius: 4px;
-}
-
 .movie-view {
-    color: #3B3B3E;
-}
+  color: #3B3B3E;
+  background-color: white;
+  padding: 1%;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 
-img {
-    width: 100%;
-    padding: auto;
-}
+  .movie-info {
+    text-align: center;
 
-.movie-info {
+    span {
+      font-weight: bold;
+      color: #050505;
+    }
+
+    h5 {
+      font-size: 22px;
+      margin-bottom: 10px;
+      margin: 0 auto;
+    }
+
+
     display: flex;
     flex-direction: column; // Stack items vertically
     gap: 8px; // Adjust space between items as needed
+    margin: 0 auto;
   }
-  
-  .movie-info div {
-    display: flex; // Allow for inline elements
-  }
-  
-  .movie-info span {
-    margin-right: 4px; // Space between labels and values
+
+  img {
+    margin-top: 20px;
+    max-width: 500px;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    align-items: center;
+    display: block;
+    margin: 0 auto;
+    width: 100%;
   }
 
 
- .click {
-    gap: 8px;
- } 
+  .movie-info {
+    width: 80%;
+    max-width: 600px;
 
+    h5,
+    span {
+      font-weight: bold;
+    }
 
- .button-space {
-    margin-right: 10px; // Adjust the space as needed
-    height: 40px;
+    div {
+      margin-bottom: 10px;
+    }
+
+    .click {
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
   }
-  
-  // Optional: if you want to add space to both buttons
-  .button-space:last-child {
-    margin-right: 0; // Remove margin for the last button
+}
+
+.back-button,
+.button-space {
+  background: #666043;
+  color: #222;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+
+  &:hover {
+    background: #e0c003;
   }
+}
+
+// Optional: if you want to add space to both buttons
+.button-space:last-child {
+  margin-right: 0; // Remove margin for the last button
+}
