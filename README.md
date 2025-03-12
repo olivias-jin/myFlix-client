@@ -36,7 +36,7 @@ This is the front-end application of the MovieBaseAPI project. This is demo web 
 4. Remove Favorite Movie list
 5. Delete the User Account
 
-## Run the test
+## **Run the test**
 
 npm run start
 
